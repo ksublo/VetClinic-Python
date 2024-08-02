@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VET CLINIC</title>
+    <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/form.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img src="{% static 'logo.png' %}" alt="Vet Clinic Logo" width="50" height="50">
+                Vet Clinic
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Login
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="loginDropdown">
+                            <li><a class="dropdown-item" href="{% url 'doc-login' %}">Doctor Login</a></li>
+                            <li><a class="dropdown-item" href="{% url 'host-login' %}">Patient Login</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{% static 'vet1.png' %}" class="img-fluid" alt="Clinic Interior">
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'vet2.png' %}" class="img-fluid" alt="Clinic Staff">
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'vet3.png' %}" class="img-fluid" alt="Clinic Staff">
+        </div>
+    </div>
+    </div>
+
+    <div class="container mt-5">
+    <h2 class="text-center mb-4">Our Doctors</h2>
+
+    <form method="get" class="mb-4">
+        <div class="row">
+            <div class="col-md-4">
+                <select name="specialization" class="form-control" onchange="this.form.submit()">
+                    <option value="">All Doctors</option>
+                    {% for spec in specializations %}
+                        <option value="{{ spec }}" {% if spec == selected_specialization %}selected{% endif %}>
+                            {{ spec }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Specialization</th>
+                <th>Contact</th>
+                <th>Shifts</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doctor in doctors %}
+            <tr>
+                <td>{{ doctor.user.first_name }} {{ doctor.user.last_name }}</td>
+                <td>{{ doctor.specialization }}</td>
+                <td>{{ doctor.user.email }}</td>
+                <td>
+                    {% for shift in doctor.shift_set.all %}
+                        <div>{{ shift.day }}: {{ shift.start_time }} - {{ shift.end_time }}</div>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col text-center">
+                <a class="btn btn-primary" href="{% url 'host-login' %}">Login</a>
+                <a class="btn btn-primary" href="{% url 'signup' %}">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light text-center text-lg-start">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05); margin-top: 50px">
+            © 2024 Vet Clinic: All rights reserved
+        </div>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+

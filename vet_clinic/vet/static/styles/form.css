@@ -1,0 +1,20 @@
+.fieldWrapper {
+    margin-bottom: 20px;
+}
+
+.fieldWrapper label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.fieldWrapper input,
+.fieldWrapper textarea {
+    width: 100%;
+    padding: 8px;
+}
+
+.fieldWrapper .alert-danger {
+    margin-top: 5px;
+}
+

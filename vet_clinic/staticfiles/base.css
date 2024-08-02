@@ -1,0 +1,22 @@
+.btn.btn-primary {
+    background-color: #605c5a;
+    border-color: #605c5a;
+}
+
+.btn.btn-primary:hover, .btn.btn-primary:focus {
+    background-color: #605c5a;
+    border-color: #605c5a;
+}
+
+.btn.btn-primary:active {
+    background-color: #605c5a;
+    border-color: #605c5a;
+}
+
+.img-fluid {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+
+

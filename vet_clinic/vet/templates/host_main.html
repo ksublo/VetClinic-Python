@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VET CLINIC</title>
+    <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/form.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img src="{% static 'logo.png' %}" alt="Vet Clinic Logo" width="50" height="50">
+                Vet Clinic
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Logout</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2>Pets</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Species</th>
+                    <th>Breed</th>
+                    <th>Birthday</th>
+                    <th>Sex</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pet in pets %}
+                <tr>
+                    <td>{{ pet.name }}</td>
+                    <td>{{ pet.species }}</td>
+                    <td>{{ pet.breed }}</td>
+                    <td>{{ pet.birth_date }}</td>
+                    <td>{{ pet.sex }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'add-pet' %}" class="btn btn-primary">Add Pet</a>
+    </div>
+
+    <div class="container mt-5">
+        <h2>Appointments</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Pet</th>
+                    <th>Date&Time</th>
+                    <th>Doctor</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.pet }}</td>
+                    <td>{{ appointment.date_time }}</td>
+                    <td>{{ appointment.doctor }}</td>
+                    <td>{{ appointment.notes }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'add-appointment-host' %}" class="btn btn-primary">Add Appointment</a>
+    </div>
+
+    <footer class="bg-light text-center text-lg-start">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05); margin-top: 50px">
+            © 2024 Vet Clinic: All rights reserved
+        </div>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+.btn.btn-primary {
+    background-color: #605c5a;
+    border-color: #605c5a;
+}
+
+.btn.btn-primary:hover, .btn.btn-primary:focus {
+    background-color: #605c5a;
+    border-color: #605c5a;
+}
+
+.btn.btn-primary:active {
+    background-color: #605c5a;
+    border-color: #605c5a;
+}
+
+.table {
+    background-color: #605c5a !important;
+    border: 1px solid #605c5a !important;
+}
+
+.table th {
+    color: #ffffff !important;
+    border-bottom: 2px solid #605c5a !important;
+}
+
+.table td {
+    padding: 0.75rem !important;
+    border-top: 1px solid #605c5a !important;
+}
+
+.img-fluid {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+body .navbar.navbar-expand-lg {
+    background-color: #91918e !important;
+    color: #ffffff;
+}
+
+
